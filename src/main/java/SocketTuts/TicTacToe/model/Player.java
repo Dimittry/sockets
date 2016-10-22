@@ -1,16 +1,32 @@
 package SocketTuts.TicTacToe.model;
 
-public class Player {
+import java.net.Socket;
+
+public class Player extends Thread {
 
     private final String name;
+
     private final Figure figure;
 
-    public Player(String name, Figure figure) {
+    private final Socket socket;
+
+    private Player opponent;
+
+    public Player(Socket socket, String name, Figure figure) {
+        this.socket = socket;
         this.name  = name;
         this.figure = figure;
     }
 
-    public String getName() {
+    public void setOpponent(Player opponent) {
+        this.opponent = opponent;
+    }
+
+    public Player getOpponent() {
+        return opponent;
+    }
+
+    public String getPlayerName() {
         return name;
     }
 
